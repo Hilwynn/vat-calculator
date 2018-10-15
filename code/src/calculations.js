@@ -4,5 +4,5 @@ const vatMultiplier = percentage =>
 export const exVatToIncVat = (percentage, exVat) =>
   exVat * vatMultiplier(percentage)
 
-export const incVatToExtVat = (percentage, incVat) =>
+export const incVatToExVat = (percentage, incVat) =>
   incVat / vatMultiplier(percentage)
