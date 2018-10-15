@@ -80,14 +80,20 @@ class App extends React.Component {
             <label htmlFor="option3">6%</label>
           </div>
 
-          <label htmlFor="ink">Inklusive moms (kr)</label>
-          <input id="ink" type="number" value={this.state.inkVat} onChange={this.handleInkVatChange} />
+          <div>
+            <label htmlFor="ink">Inklusive moms (kr)</label>
+            <input id="ink" type="number" value={this.state.inkVat} onChange={this.handleInkVatChange} />
+          </div>
 
-          <label htmlFor="exk">Exklusive moms (kr)</label>
-          <input id="exk" type="number" value={this.state.exkVat} onChange={this.handleExkVatChange} />
+          <div>
+            <label htmlFor="exk">Exklusive moms (kr)</label>
+            <input id="exk" type="number" value={this.state.exkVat} onChange={this.handleExkVatChange} />
+          </div>
 
-          <label htmlFor="moms">Momssumma (kr)</label>
-          <input id="moms" type="number" readOnly="readonly" value={(this.state.inkVat - this.state.exkVat).toFixed(2)} />
+          <div>
+            <label htmlFor="moms">Momssumma (kr)</label>
+            <input id="moms" type="number" readOnly="readonly" value={(this.state.inkVat - this.state.exkVat).toFixed(2)} />
+          </div>
 
         </form>
       </div>
