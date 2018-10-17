@@ -7,42 +7,42 @@ class App extends React.Component {
     super(props)
     this.state = {
       percentageVat: 25,
-      inkVat: "",
+      incVat: "",
       exkVat: "",
-      userInputInkVat: false
+      userInputIncVat: false
     }
   }
 
   handleRadioChange = (event) => {
     const vat = Number(event.target.value)
-    if (this.state.userInputInkVat) {
+    if (this.state.userInputIncVat) {
       this.setState({
         percentageVat: vat,
-        exkVat: incVatToExVat(vat, this.state.inkVat).toFixed(2)
+        exkVat: incVatToExVat(vat, this.state.incVat).toFixed(2)
       })
     } else {
       this.setState({
         percentageVat: vat,
-        inkVat: exVatToIncVat(vat, this.state.exkVat).toFixed(2)
+        incVat: exVatToIncVat(vat, this.state.exkVat).toFixed(2)
       })
     }
   }
 
-  handleInkVatChange = (event) => {
-    const inkVat = Number(event.target.value)
+  handleIncVatChange = (event) => {
+    const incVat = Number(event.target.value)
     this.setState({
-      inkVat,
-      exkVat: incVatToExVat(this.state.percentageVat, inkVat).toFixed(2),
-      userInputInkVat: true
+      incVat,
+      exkVat: incVatToExVat(this.state.percentageVat, incVat).toFixed(2),
+      userInputIncVat: true
     })
   }
 
   handleExkVatChange = (event) => {
     const exkVat = Number(event.target.value)
     this.setState({
-      inkVat: exVatToIncVat(this.state.percentageVat, exkVat).toFixed(2),
+      incVat: exVatToIncVat(this.state.percentageVat, exkVat).toFixed(2),
       exkVat,
-      userInputInkVat: false
+      userInputIncVat: false
     })
   }
 
@@ -82,18 +82,30 @@ class App extends React.Component {
           </div>
 
           <div className="text-container">
-            <label htmlFor="ink">Inklusive moms (kr)</label>
-            <input id="ink" type="number" value={this.state.inkVat} onChange={this.handleInkVatChange} />
+            <label htmlFor="incVat">Inklusive moms (kr)</label>
+            <input
+              id="incVat"
+              type="number"
+              value={this.state.incVat}
+              onChange={this.handleIncVatChange} />
           </div>
 
           <div className="text-container">
-            <label htmlFor="exk">Exklusive moms (kr)</label>
-            <input id="exk" type="number" value={this.state.exkVat} onChange={this.handleExkVatChange} />
+            <label htmlFor="exVat">Exklusive moms (kr)</label>
+            <input
+              id="exVat"
+              type="number"
+              value={this.state.exkVat}
+              onChange={this.handleExkVatChange} />
           </div>
 
           <div className="text-container">
-            <label htmlFor="moms">Momssumma (kr)</label>
-            <input id="moms" type="number" readOnly="readonly" value={(this.state.inkVat - this.state.exkVat).toFixed(2)} />
+            <label htmlFor="vat">Momssumma (kr)</label>
+            <input
+              id="vat"
+              type="number"
+              readOnly="readonly"
+              value={(this.state.incVat - this.state.exkVat).toFixed(2)} />
           </div>
 
         </form>
