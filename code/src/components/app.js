@@ -7,23 +7,25 @@ class App extends React.Component {
     super(props)
     this.state = {
       percentageVat: 25,
+      customPercentage: 0,
       incVat: "",
-      exkVat: "",
+      exVat: "",
       userInputIncVat: false
     }
   }
 
   handleRadioChange = (event) => {
     const vat = Number(event.target.value)
+
     if (this.state.userInputIncVat) {
       this.setState({
         percentageVat: vat,
-        exkVat: incVatToExVat(vat, this.state.incVat).toFixed(2)
+        exVat: incVatToExVat(vat, this.state.incVat).toFixed(2)
       })
     } else {
       this.setState({
         percentageVat: vat,
-        incVat: exVatToIncVat(vat, this.state.exkVat).toFixed(2)
+        incVat: exVatToIncVat(vat, this.state.exVat).toFixed(2)
       })
     }
   }
@@ -32,18 +34,31 @@ class App extends React.Component {
     const incVat = Number(event.target.value)
     this.setState({
       incVat,
-      exkVat: incVatToExVat(this.state.percentageVat, incVat).toFixed(2),
+      exVat: incVatToExVat(this.state.percentageVat, incVat).toFixed(2),
       userInputIncVat: true
     })
   }
 
-  handleExkVatChange = (event) => {
-    const exkVat = Number(event.target.value)
+  handleExVatChange = (event) => {
+    const exVat = Number(event.target.value)
     this.setState({
-      incVat: exVatToIncVat(this.state.percentageVat, exkVat).toFixed(2),
-      exkVat,
+      incVat: exVatToIncVat(this.state.percentageVat, exVat).toFixed(2),
+      exVat,
       userInputIncVat: false
     })
+  }
+
+  setCustomPercentage = (event) => {
+    const customPercentage = Number(event.target.value)
+    this.setState({
+      customPercentage,
+      percentageVat: customPercentage
+    })
+    this.handleRadioChange(event)
+  }
+
+  handleFocus = (event) => {
+    event.target.select()
   }
 
   render() {
@@ -81,31 +96,60 @@ class App extends React.Component {
             <label htmlFor="option3">6%</label>
           </div>
 
+          <div className="radio-container">
+            <input
+              id="option4"
+              type="radio"
+              value={`${this.state.customPercentage}`}
+              checked={this.state.percentageVat === Number(`${this.state.customPercentage}`)}
+              onChange={this.handleRadioChange}
+              onClick={this.setCustomPercentage} />
+            <label htmlFor="option3">
+              <input
+                id="customPercentage"
+                type="text"
+                pattern="[0-9]*"
+                inputMode="numeric"
+                placeholder="0"
+                value={this.state.customPercentage}
+                onChange={this.setCustomPercentage}
+                onFocus={this.handleFocus} />
+            </label>
+          </div>
+
           <div className="text-container">
             <label htmlFor="incVat">Inklusive moms (kr)</label>
             <input
               id="incVat"
-              type="number"
+              type="text"
+              pattern="[0-9]*"
+              inputMode="numeric"
+              placeholder="0"
               value={this.state.incVat}
-              onChange={this.handleIncVatChange} />
+              onChange={this.handleIncVatChange}
+              onFocus={this.handleFocus} />
           </div>
 
           <div className="text-container">
             <label htmlFor="exVat">Exklusive moms (kr)</label>
             <input
               id="exVat"
-              type="number"
-              value={this.state.exkVat}
-              onChange={this.handleExkVatChange} />
+              type="text"
+              pattern="[0-9]*"
+              inputMode="numeric"
+              placeholder="0"
+              value={this.state.exVat}
+              onChange={this.handleExVatChange}
+              onFocus={this.handleFocus} />
           </div>
 
           <div className="text-container">
             <label htmlFor="vat">Momssumma (kr)</label>
             <input
               id="vat"
-              type="number"
+              type="text"
               readOnly="readonly"
-              value={(this.state.incVat - this.state.exkVat).toFixed(2)} />
+              value={(this.state.incVat - this.state.exVat).toFixed(2)} />
           </div>
 
         </form>
