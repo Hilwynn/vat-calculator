@@ -10,6 +10,11 @@ h1 {
   color: #ffa69e;
 }
 
+input {
+  border: 1px solid #5e6472;
+  padding: 3px 5px;
+}
+
 .app {
   margin: 0 auto;
   padding: 30px 20px;
@@ -29,16 +34,13 @@ h1 {
   margin-bottom: 3px;
 }
 
-.text-container input {
-  border: 1px solid #5e6472;
-  padding: 5px;
-  width: calc(100% - 12px);
-}
-
 @media screen and (min-width: 600px) {
   .app {
     margin: 100px auto;
     width: 80%;
+  }
+  .radio-container input[type="text"] {
+    width: calc(5% - 12px);
   }
   .text-container input {
     width: calc(50% - 12px);
