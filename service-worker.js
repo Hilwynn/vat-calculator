@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/vat-calculator/precache-manifest.55d28c65979024993c86df429d5cfd07.js"
+  "/vat-calculator/precache-manifest.1e9fbc34bb78962042f9bce07d875848.js"
 );
 
 workbox.clientsClaim();

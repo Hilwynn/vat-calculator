@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/vat-calculator/static/css/main.24047194.chunk.css"
   },
   {
-    "revision": "90680685d182a88d2b25226c64fa19d1",
+    "revision": "2319ebc852ae8a553ef5dad9d5ad4a6d",
     "url": "/vat-calculator/index.html"
   }
 ];
